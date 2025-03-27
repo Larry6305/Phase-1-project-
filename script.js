@@ -2,7 +2,7 @@ const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 const recipesContainer = document.getElementById('recipes-container');
 
-// Spoonacular API key (sign up at https://spoonacular.com/food-api to get one)
+// Spoonacular API key (replace with your own valid key)
 const API_KEY = '7c3bb3a9c1b94c5784436c0e85d6615c';
 const BASE_URL = 'https://api.spoonacular.com/recipes/complexSearch';
 
@@ -29,6 +29,7 @@ function displayRecipes(recipes) {
   recipes.forEach(recipe => {
     const recipeCard = document.createElement('div');
     recipeCard.classList.add('recipe-card');
+    recipeCard.dataset.id = recipe.id; // Store ID in data attribute
     recipeCard.innerHTML = `
       <img src="${recipe.image}" alt="${recipe.title}">
       <h3>${recipe.title}</h3>
@@ -37,9 +38,18 @@ function displayRecipes(recipes) {
     recipesContainer.appendChild(recipeCard);
   });
 }
-recipeCard.addEventListener('click', async () => {
-    const recipeId = recipe.id;
-    const response = await fetch(`/api/recipes/${recipeId}`);
+
+// Use event delegation to handle clicks on dynamically added elements
+recipesContainer.addEventListener('click', async (event) => {
+  const recipeCard = event.target.closest('.recipe-card');
+  if (!recipeCard) return;
+
+  const recipeId = recipeCard.dataset.id;
+  try {
+    const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${API_KEY}`);
     const details = await response.json();
     alert(`Ingredients: ${details.extendedIngredients.map(ing => ing.original).join(', ')}`);
+  } catch (error) {
+    console.error('Error fetching recipe details:', error);
+  }
 });
