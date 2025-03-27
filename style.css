@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #ffe6cc;
     margin: 0;
     padding: 0;
   }
@@ -20,7 +20,8 @@ body {
   }
 
   .logo img {
-    /* max-width: 1200px; */
+    display: block;
+    margin: 0 auto;
     width: 300px;
     cursor: pointer;
     border-radius: 20%;
