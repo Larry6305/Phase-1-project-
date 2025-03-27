@@ -42,3 +42,12 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+#search-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
