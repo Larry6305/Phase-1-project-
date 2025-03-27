@@ -69,3 +69,17 @@ h1 {
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.recipe-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.recipe-card h3 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.recipe-card p {
+  color: #666;
+}
